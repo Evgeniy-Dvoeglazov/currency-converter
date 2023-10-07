@@ -1,8 +1,18 @@
-import { legacy_createStore as createStore, combineReducers } from 'redux';
-import { currencyReducer } from './currencyReducer';
+import { legacy_createStore as createStore, combineReducers, applyMiddleware } from 'redux';
+import { amountReducer } from './amountReducer';
+import { currencyOptionsReducer } from './currencyOptionsReducer';
+import { fromCurrencyReducer } from './fromCurrencyReducer';
+import { toCurrencyReducer } from './toCurrencyReducer';
+import { exchangeRateReducer } from './exchangeRateReducer';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
-  currency: currencyReducer,
+  amount: amountReducer,
+  currencyOptions: currencyOptionsReducer,
+  fromCurrency: fromCurrencyReducer,
+  toCurrency: toCurrencyReducer,
+  exchangeRate: exchangeRateReducer
 });
 
-export const store = createStore(rootReducer);
+export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));

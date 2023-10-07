@@ -7,13 +7,13 @@ function HeaderComponent() {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate('/');
+    navigate('/', { replace: true });
   }
 
   return (
     <Header>
-      <Logo onClick={handleClick}>
-        <Image src={imageLogo} />
+      <Logo type='button' onClick={handleClick}>
+        <Image src={imageLogo} alt='значок обмена' />
         <Title>CurrencyExchange</Title>
       </Logo>
     </Header>

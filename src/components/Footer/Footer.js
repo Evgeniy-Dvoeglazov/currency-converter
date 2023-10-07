@@ -15,7 +15,7 @@ const Footer = styled.footer`
   bottom: 0;
 `;
 
-  const Title = styled.h3`
+const Title = styled.h3`
   font-size: 14px;
   font-weight: 400;
   margin: 40px 0;

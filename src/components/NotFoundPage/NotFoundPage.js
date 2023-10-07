@@ -1,12 +1,19 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 function NotFoundPageComponent() {
+
+  const navigate = useNavigate();
+
+  function handleClick() {
+    navigate('/', { replace: true });
+  }
 
   return (
     <NotFoundPage>
       <Title>404</Title>
       <Description>Страница не найдена</Description>
-      <Button>На главную</Button>
+      <Button type='button' onClick={handleClick}>На главную</Button>
     </NotFoundPage>
   )
 }

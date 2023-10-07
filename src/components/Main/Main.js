@@ -14,9 +14,9 @@ function MainComponent() {
     <Main>
       <Intro>
         <Title>Конвертер валют</Title>
-        <Image src={mainImage} />
+        <Image src={mainImage} alt='изображение монет' />
       </Intro>
-      <Button onClick={handleClick}>Начать<Flare></Flare></Button>
+      <Button type='button' onClick={handleClick}>Начать<Flare></Flare></Button>
     </Main>
   )
 }

@@ -1,63 +1,86 @@
 import styled from 'styled-components';
 import exchangeImage from '../../images/logo.png';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import CurrencyRow  from '../CurrencyRow/CurrencyRow';
+import {
+  ADD_VALUE,
+  REMOVE_LAST_VALUE,
+  ADD_FROM_CURRENCY,
+  ADD_TO_CURRENCY,
+  maxLength
+} from '../../utils/constants';
 
-function ExchangerComponent() {
+function ExchangerComponent(props) {
 
   const dispatch = useDispatch();
 
-  // const [currency, setCurrency] = useState('0');
-
-  const buttonsText = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', ',', 'DEL'];
+  const buttonsText = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.', 'DEL'];
 
   const buttons = buttonsText.map((buttonText) => {
     return (
-      <Button onClick={handleClick} key={buttonText}>{buttonText}</Button>
+      <Button type='button' onClick={handleClick} key={buttonText}>{buttonText}</Button>
     )
   });
 
-  const currencyValue = useSelector(state => state.currency.currencyValue);
+  const amountValue = useSelector(state => state.amount.amount);
+  const fromCurrency = useSelector(state => state.fromCurrency.fromCurrency);
+  const toCurrency = useSelector(state => state.toCurrency.toCurrency);
 
   function addValue(value) {
-    dispatch({ type: 'ADD_VALUE', payload: value })
+    dispatch({ type: ADD_VALUE, payload: value })
   }
 
   function removeLastValue() {
-    dispatch({ type: 'REMOVE_LAST_VALUE' })
+    dispatch({ type: REMOVE_LAST_VALUE })
   }
 
   function handleClick(e) {
-    if (e.target.textContent === ',' && currencyValue.includes(',')) {
+    if (e.target.textContent === '.' && amountValue.includes('.')) {
       return;
     }
     if (e.target.textContent === 'DEL') {
       removeLastValue();
-    } else {
-      if (currencyValue.length === 1 && currencyValue[0] === '0' && e.target.textContent !== ',') {
+      return;
+    }
+    if (amountValue.length < maxLength) {
+      if (amountValue.length === 1 && amountValue[0] === '0' && e.target.textContent !== '.' && e.target.textContent !== 'DEL') {
         addValue('' + e.target.textContent);
-      } else if (currencyValue[0] == null && e.target.textContent === ',') {
+      } else if (amountValue[0] == null && e.target.textContent === '.') {
         addValue('0' + e.target.textContent);
       } else {
-        addValue(currencyValue + e.target.textContent);
+        addValue(amountValue + e.target.textContent);
       }
-    }
+    } else return;
   }
 
-  console.log(currencyValue[0]);
+  function handleChangeBtnClick() {
+    console.log(toCurrency, fromCurrency);
+    dispatch({ type: ADD_FROM_CURRENCY, payload: toCurrency });
+    dispatch({ type: ADD_TO_CURRENCY, payload: fromCurrency });
+  }
 
   return (
     <Exchanger>
-      <FromCurrency>{currencyValue || '0'}</FromCurrency>
-      <Image src={exchangeImage} />
-      <ToCurrency></ToCurrency>
+      <CurrencyRow
+        titleText='From'
+        displayText={amountValue || '0'}
+        selectedCurrency={fromCurrency}
+        onChangeCurrency={(selectedOption) =>dispatch({ type: ADD_FROM_CURRENCY, payload: selectedOption.label })}
+      />
+      <Image src={exchangeImage} alt='значок обмена' onClick={handleChangeBtnClick} />
+      <CurrencyRow
+        titleText='To'
+        displayText={props.toAmount.toFixed(2)}
+        selectedCurrency={toCurrency}
+        onChangeCurrency={selectedOption =>dispatch({ type: ADD_TO_CURRENCY, payload: selectedOption.label })}
+      />
       <Buttons>{buttons}</Buttons>
     </Exchanger>
   )
 }
 
 const Exchanger = styled.section`
-  margin: 100px auto 0;
+  margin: 50px auto 0;
 `;
 
 const Button = styled.button`
@@ -87,26 +110,9 @@ const Buttons = styled.div`
   gap: 15px
 `;
 
-const FromCurrency = styled.div`
-  font-size: 30px;
-  text-align: end;
-  height: 40px;
-  margin: 0 auto;
-  width: 400px;
-  border-bottom: 1px solid #fff;
-`;
-
-const ToCurrency = styled.div`
-  height: 40px;
-  margin: 0 auto;
-  width: 400px;
-  border-bottom: 1px solid #fff;
-  text-align: end;
-`;
-
 const Image = styled.img`
   display: block;
-  margin: 40px auto;
+  margin: 15px auto;
   width: 30px;
 `;
 
