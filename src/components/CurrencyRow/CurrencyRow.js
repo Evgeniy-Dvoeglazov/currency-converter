@@ -3,17 +3,24 @@ import { useSelector } from 'react-redux';
 import Select from 'react-select';
 
 function CurrencyRowComponent(props) {
+  console.log(props.disabled);
 
   const currencyOptions = useSelector(state => state.currencyOptions.currencyOptions);
 
-  const options = currencyOptions.map((option) => ({ value: option, label: option }));
-  const currentCurrency = { value: props.selectedCurrency, label: props.selectedCurrency }
+  const options = currencyOptions.map((option) => {
+    if (option === props.toCurrency || option === props.fromCurrency) {
+      return { value: option, label: option, isDisabled: true}
+    } else {
+      return { value: option, label: option}
+    }
+  });
+  const currentCurrency = {value: props.selectedCurrency, label: props.selectedCurrency}
 
   const customStyles = {
-    option: (defaultStyles) => ({
+    option: (defaultStyles, state) => ({
       ...defaultStyles,
-      color: '#fff',
-      backgroundColor: '#282828',
+      color: state.isDisabled ? 'rgba(255, 255, 255, .2)' : 'rgba(255, 255, 255)',
+      backgroundColor: state.isFocused ? '#4c4c4c' : '#282828',
       cursor: 'pointer',
     }),
 
@@ -40,7 +47,16 @@ function CurrencyRowComponent(props) {
         value={currentCurrency}
         options={options}
         onChange={props.onChangeCurrency}
-        styles={customStyles} />
+        styles={customStyles}
+        theme={(theme) => ({
+          ...theme,
+          colors: {
+            ...theme.colors,
+            primary25: 'hotpink',
+            primary: 'black',
+          },
+        })}
+        />
     </CurrencyRow>
   )
 }

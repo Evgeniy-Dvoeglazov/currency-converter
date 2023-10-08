@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api.frankfurter.app/latest';
+const BASE_URL = 'https://api.frankfurter.app';
 const ADD_VALUE = 'ADD_VALUE';
 const REMOVE_LAST_VALUE = 'REMOVE_LAST_VALUE';
 const CHANGE_FROM_ON_TO_CURRENCY = 'CHANGE_FROM_ON_TO_CURRENCY';
@@ -8,6 +8,7 @@ const ADD_TO_CURRENCY = 'ADD_TO_CURRENCY';
 const ADD_OPTIONS = 'ADD_OPTIONS';
 const ADD_EXCHANGE_RATE = 'ADD_EXCHANGE_RATE';
 const maxLength = 18;
+const buttonsText = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.', 'DEL'];
 
 export {
   BASE_URL,
@@ -19,5 +20,6 @@ export {
   ADD_TO_CURRENCY,
   ADD_OPTIONS,
   ADD_EXCHANGE_RATE,
-  maxLength
+  maxLength,
+  buttonsText
 }

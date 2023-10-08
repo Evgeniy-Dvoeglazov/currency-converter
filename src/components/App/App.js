@@ -1,13 +1,13 @@
 import HeaderComponent from '../Header/Header';
 import MainComponent from '../Main/Main';
-import ExchangerComponent from '../Exchanger/Exchanger';
+import ConverterComponent from '../Converter/Converter';
 import FooterComponent from '../Footer/Footer';
 import NotFoundPageComponent from '../NotFoundPage/NotFoundPage'
 import styled from 'styled-components';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getCurrency, getChangedCurrency } from '../../asyncActions/currency';
+import { getCurrency, getChangedCurrency, getCurrencyCountry } from '../../asyncActions/currency';
 
 function App() {
 
@@ -24,10 +24,11 @@ function App() {
   useEffect(() => {
     navigate('/', { replace: true });
     dispatch(getCurrency());
+    // dispatch(getCurrencyCountry());
   }, [])
 
   useEffect(() => {
-    if (fromCurrency !== '' && toCurrency !== '') {
+    if (fromCurrency !== '' && toCurrency !== '' && fromCurrency !== toCurrency) {
       dispatch(getChangedCurrency(fromCurrency, toCurrency));
     }
   }, [fromCurrency, toCurrency])
@@ -40,7 +41,7 @@ function App() {
           <MainComponent />
         } />
         <Route path='/exchanger' element={
-          <ExchangerComponent
+          <ConverterComponent
             toAmount={toAmount}
           />
         } />

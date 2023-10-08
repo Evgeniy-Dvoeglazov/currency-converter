@@ -2,19 +2,19 @@ import styled from 'styled-components';
 import exchangeImage from '../../images/logo.png';
 import { useDispatch, useSelector } from 'react-redux';
 import CurrencyRow  from '../CurrencyRow/CurrencyRow';
+import { useEffect, useState } from 'react'
 import {
   ADD_VALUE,
   REMOVE_LAST_VALUE,
   ADD_FROM_CURRENCY,
   ADD_TO_CURRENCY,
-  maxLength
+  maxLength,
+  buttonsText
 } from '../../utils/constants';
 
-function ExchangerComponent(props) {
+function ConverterComponent(props) {
 
   const dispatch = useDispatch();
-
-  const buttonsText = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.', 'DEL'];
 
   const buttons = buttonsText.map((buttonText) => {
     return (
@@ -59,27 +59,39 @@ function ExchangerComponent(props) {
     dispatch({ type: ADD_TO_CURRENCY, payload: fromCurrency });
   }
 
+  const [disabled, setDisabled] = useState(false);
+
+  useEffect(() => {
+    if(fromCurrency || toCurrency) {
+      setDisabled(true);
+    }
+  }, [fromCurrency, toCurrency])
+
   return (
-    <Exchanger>
+    <Converter>
       <CurrencyRow
         titleText='From'
         displayText={amountValue || '0'}
+        toCurrency={toCurrency}
         selectedCurrency={fromCurrency}
         onChangeCurrency={(selectedOption) =>dispatch({ type: ADD_FROM_CURRENCY, payload: selectedOption.label })}
+        disabled={disabled}
       />
       <Image src={exchangeImage} alt='значок обмена' onClick={handleChangeBtnClick} />
       <CurrencyRow
         titleText='To'
         displayText={props.toAmount.toFixed(2)}
+        fromCurrency={fromCurrency}
         selectedCurrency={toCurrency}
         onChangeCurrency={selectedOption =>dispatch({ type: ADD_TO_CURRENCY, payload: selectedOption.label })}
+        disabled={disabled}
       />
       <Buttons>{buttons}</Buttons>
-    </Exchanger>
+    </Converter>
   )
 }
 
-const Exchanger = styled.section`
+const Converter = styled.section`
   margin: 50px auto 0;
 `;
 
@@ -116,4 +128,4 @@ const Image = styled.img`
   width: 30px;
 `;
 
-export default ExchangerComponent;
+export default ConverterComponent;
