@@ -12,7 +12,7 @@ import {
   buttonsText
 } from '../../utils/constants';
 
-function ConverterComponent(props) {
+function Converter(props) {
 
   const dispatch = useDispatch();
 
@@ -68,7 +68,7 @@ function ConverterComponent(props) {
   }, [fromCurrency, toCurrency])
 
   return (
-    <Converter>
+    <Wrapper>
       <CurrencyRow
         titleText='From'
         displayText={amountValue || '0'}
@@ -87,11 +87,11 @@ function ConverterComponent(props) {
         disabled={disabled}
       />
       <Buttons>{buttons}</Buttons>
-    </Converter>
+    </Wrapper>
   )
 }
 
-const Converter = styled.section`
+const Wrapper = styled.section`
   margin: 50px auto 0;
 `;
 
@@ -128,4 +128,4 @@ const Image = styled.img`
   width: 30px;
 `;
 
-export default ConverterComponent;
+export default Converter;

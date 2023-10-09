@@ -1,8 +1,8 @@
-import HeaderComponent from '../Header/Header';
-import MainComponent from '../Main/Main';
-import ConverterComponent from '../Converter/Converter';
-import FooterComponent from '../Footer/Footer';
-import NotFoundPageComponent from '../NotFoundPage/NotFoundPage'
+import Header from '../Header/Header';
+import Main from '../Main/Main';
+import Converter from '../Converter/Converter';
+import Footer from '../Footer/Footer';
+import NotFoundPage from '../NotFoundPage/NotFoundPage'
 import styled from 'styled-components';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -34,27 +34,27 @@ function App() {
   }, [fromCurrency, toCurrency])
 
   return (
-    <Application>
-      <HeaderComponent />
+    <Wrapper>
+      <Header />
       <Routes>
         <Route path='/' element={
-          <MainComponent />
+          <Main />
         } />
-        <Route path='/exchanger' element={
-          <ConverterComponent
+        <Route path='/converter' element={
+          <Converter
             toAmount={toAmount}
           />
         } />
         <Route path='*' element={
-          <NotFoundPageComponent />
+          <NotFoundPage />
         } />
       </Routes>
-      <FooterComponent />
-    </Application>
+      <Footer />
+    </Wrapper>
   );
 }
 
-const Application = styled.div`
+const Wrapper = styled.div`
   min-height: 100vh;
   background: #282828;
   color: #fff;

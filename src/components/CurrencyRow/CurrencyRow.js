@@ -2,19 +2,19 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import Select from 'react-select';
 
-function CurrencyRowComponent(props) {
+function CurrencyRow(props) {
   console.log(props.disabled);
 
   const currencyOptions = useSelector(state => state.currencyOptions.currencyOptions);
 
   const options = currencyOptions.map((option) => {
     if (option === props.toCurrency || option === props.fromCurrency) {
-      return { value: option, label: option, isDisabled: true}
+      return { value: option, label: option, isDisabled: true }
     } else {
-      return { value: option, label: option}
+      return { value: option, label: option }
     }
   });
-  const currentCurrency = {value: props.selectedCurrency, label: props.selectedCurrency}
+  const currentCurrency = { value: props.selectedCurrency, label: props.selectedCurrency }
 
   const customStyles = {
     option: (defaultStyles, state) => ({
@@ -37,7 +37,7 @@ function CurrencyRowComponent(props) {
   };
 
   return (
-    <CurrencyRow>
+    <Wrapper>
       <Display>
         <Title>{props.titleText}</Title>
         <Numbers>{props.displayText}</Numbers>
@@ -56,25 +56,25 @@ function CurrencyRowComponent(props) {
             primary: 'black',
           },
         })}
-        />
-    </CurrencyRow>
+      />
+    </Wrapper>
   )
 }
 
-const Display = styled.div`
-  width: 400px;
-  border: 1px solid rgba(255, 255, 255, .1);
-  border-radius: 10px;
-  padding: 5px;
-`;
-
-const CurrencyRow = styled.div`
+const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   left: 59.33px;
   top: 0;
+`;
+
+const Display = styled.div`
+  width: 400px;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 10px;
+  padding: 5px;
 `;
 
 const Title = styled.h2`
@@ -91,4 +91,4 @@ const Numbers = styled.p`
   text-align: end;
 `;
 
-export default CurrencyRowComponent;
+export default CurrencyRow;

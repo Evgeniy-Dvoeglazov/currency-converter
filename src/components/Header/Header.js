@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import imageLogo from '../../images/logo.png';
 import { useNavigate } from 'react-router-dom';
 
-function HeaderComponent() {
+function Header() {
 
   const navigate = useNavigate();
 
@@ -11,17 +11,29 @@ function HeaderComponent() {
   }
 
   return (
-    <Header>
+    <Wrapper>
       <Logo type='button' onClick={handleClick}>
         <Image src={imageLogo} alt='значок обмена' />
-        <Title>CurrencyExchange</Title>
+        <Title>CurrencyConverter</Title>
       </Logo>
-    </Header>
+    </Wrapper>
   )
 }
 
-const Header = styled.header`
+const Wrapper = styled.header`
   padding: 40px 100px;
+
+  @media screen and (max-width: 1280px) {
+    padding: 30px 50px;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 30px 30px 50px;
+  }
+
+  @media screen and (max-width: 425px) {
+    padding: 20px 15px 50px;
+  }
 `;
 
 const Logo = styled.button`
@@ -41,12 +53,21 @@ const Image = styled.img`
   ${Logo}:hover & {
     rotate: -180deg;
   }
+
+  @media screen and (max-width: 425px) {
+    width: 25px;
+  }
 `;
 
 const Title = styled.h2`
   font-size: 18px;
   font-weight: 400;
   margin: 0 0 0 15px;
+
+  @media screen and (max-width: 425px) {
+    font-size: 14px;
+    margin: 0 0 0 10px;
+  }
 `;
 
-export default HeaderComponent;
+export default Header;

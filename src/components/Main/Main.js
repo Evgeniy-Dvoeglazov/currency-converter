@@ -2,48 +2,24 @@ import { styled, keyframes } from 'styled-components';
 import mainImage from '../../images/main-image.png';
 import { useNavigate } from 'react-router-dom';
 
-function MainComponent() {
+function Main() {
 
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate('/exchanger');
+    navigate('/converter', { replace: true });
   }
 
   return (
-    <Main>
+    <Wrapper>
       <Intro>
         <Title>Конвертер валют</Title>
         <Image src={mainImage} alt='изображение монет' />
       </Intro>
       <Button type='button' onClick={handleClick}>Начать<Flare></Flare></Button>
-    </Main>
+    </Wrapper>
   )
 }
-
-const Main = styled.main`
-  padding: 0 100px;
-`;
-
-const Intro = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const Title = styled.h1`
-  font-size: 100px;
-  max-width: 40%;
-  margin: 0;
-  text-transform: uppercase;
-  line-height: 1.3;
-  letter-spacing: 5px;
-`;
-
-const Image = styled.img`
-  width: 500px;
-  margin: 0;
-`;
 
 const flareAnimation = keyframes`
   0% {
@@ -60,6 +36,77 @@ const flareAnimation = keyframes`
 
   100% {
     left: 150%;
+  }
+`;
+
+const Wrapper = styled.main`
+  padding: 0 100px;
+
+  @media screen and (max-width: 1280px) {
+    padding: 0 50px;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 0 30px;
+  }
+
+  @media screen and (max-width: 425px) {
+    padding: 0 15px;
+  }
+`;
+
+const Intro = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+  }
+`;
+
+const Title = styled.h1`
+  font-size: 100px;
+  margin: 0;
+  text-transform: uppercase;
+  line-height: 1.3;
+  letter-spacing: 5px;
+
+  @media screen and (max-width: 1440px) {
+    width: 500px;
+    font-size: 80px;
+  }
+
+  @media screen and (max-width: 1280px) {
+    font-size: 70px;
+  }
+
+  @media screen and (max-width: 1024px) {
+    font-size: 50px;
+  }
+
+  @media screen and (max-width: 425px) {
+    width: 290px;
+    font-size: 36px;
+  }
+`;
+
+const Image = styled.img`
+  width: 500px;
+  margin: 0;
+
+  @media screen and (max-width: 1440px) {
+    width: 400px;
+  }
+
+  @media screen and (max-width: 1024px) {
+    margin: 50px 0;
+    width: 300px;
+  }
+
+  @media screen and (max-width: 425px) {
+    width: 70%;
   }
 `;
 
@@ -95,4 +142,4 @@ const Flare = styled.span`
   animation: ${flareAnimation} 8s infinite linear;
 `;
 
-export default MainComponent;
+export default Main;

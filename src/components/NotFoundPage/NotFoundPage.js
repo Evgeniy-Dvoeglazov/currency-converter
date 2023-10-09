@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-function NotFoundPageComponent() {
+function NotFoundPage() {
 
   const navigate = useNavigate();
 
@@ -10,15 +10,15 @@ function NotFoundPageComponent() {
   }
 
   return (
-    <NotFoundPage>
+    <Wrapper>
       <Title>404</Title>
       <Description>Страница не найдена</Description>
       <Button type='button' onClick={handleClick}>На главную</Button>
-    </NotFoundPage>
+    </Wrapper>
   )
 }
 
-const NotFoundPage = styled.section`
+const Wrapper = styled.section`
   text-align: center;
   padding-top: 100px;
 `;
@@ -48,4 +48,4 @@ const Button = styled.button`
   }
 `;
 
-export default NotFoundPageComponent;
+export default NotFoundPage;
