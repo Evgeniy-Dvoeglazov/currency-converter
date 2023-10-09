@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import changeImage from '../../images/changer.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import CurrencyRow  from '../CurrencyRow/CurrencyRow';
+import CurrencyRow from '../CurrencyRow/CurrencyRow';
 import { useEffect, useState } from 'react'
 import {
   ADD_VALUE,
@@ -62,48 +62,50 @@ function Converter(props) {
   const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
-    if(fromCurrency || toCurrency) {
+    if (fromCurrency || toCurrency) {
       setDisabled(true);
     }
   }, [fromCurrency, toCurrency])
 
   return (
     <Wrapper>
-      <CurrencyRow
-        titleText='From'
-        displayText={amountValue || '0'}
-        toCurrency={toCurrency}
-        selectedCurrency={fromCurrency}
-        onChangeCurrency={(selectedOption) =>dispatch({ type: ADD_FROM_CURRENCY, payload: selectedOption.label })}
-        disabled={disabled}
-      />
-      <ChangeButton area-label='кнопка переворота валют' type='button' onClick={handleChangeBtnClick}></ChangeButton>
-      <CurrencyRow
-        titleText='To'
-        displayText={props.toAmount.toFixed(2)}
-        fromCurrency={fromCurrency}
-        selectedCurrency={toCurrency}
-        onChangeCurrency={selectedOption =>dispatch({ type: ADD_TO_CURRENCY, payload: selectedOption.label })}
-        disabled={disabled}
-      />
+      <div>
+        <CurrencyRow
+          titleText='From'
+          displayText={amountValue || '0'}
+          toCurrency={toCurrency}
+          selectedCurrency={fromCurrency}
+          onChangeCurrency={(selectedOption) => dispatch({ type: ADD_FROM_CURRENCY, payload: selectedOption.label })}
+          disabled={disabled}
+        />
+        <ChangeButton area-label='кнопка переворота валют' type='button' onClick={handleChangeBtnClick}></ChangeButton>
+        <CurrencyRow
+          titleText='To'
+          displayText={props.toAmount.toFixed(2)}
+          fromCurrency={fromCurrency}
+          selectedCurrency={toCurrency}
+          onChangeCurrency={selectedOption => dispatch({ type: ADD_TO_CURRENCY, payload: selectedOption.label })}
+          disabled={disabled}
+        />
+      </div>
       <Buttons>{buttons}</Buttons>
     </Wrapper>
   )
 }
 
 const Wrapper = styled.section`
-  height: 75vh;
-  // margin: 30px auto 0;
+  margin: 30px auto 0;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
 
   @media screen and (max-width: 1024px) {
-    margin: 10px auto 0;
+    margin: 10px auto;
   }
 
   @media screen and (max-width: 768px) {
     padding: 0 30px;
+    display: block;
   }
 
   @media screen and (max-width: 425px) {
@@ -112,7 +114,6 @@ const Wrapper = styled.section`
 `;
 
 const Buttons = styled.div`
-  margin: 50px auto 0;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -122,6 +123,10 @@ const Buttons = styled.div`
 
   @media screen and (max-width: 1024px) {
     width: 200px;
+  }
+
+  @media screen and (max-width: 768px) {
+    margin: 40px auto 0;
   }
 
   @media screen and (max-width: 425px) {

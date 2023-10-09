@@ -24,9 +24,9 @@ function CurrencyRow(props) {
       cursor: 'pointer',
 
       '@media screen and (max-width: 768px)':
-      {
-        fontSize: '14px',
-      }
+        {
+          fontSize: '14px',
+       }
     }),
 
     control: (defaultStyles) => ({
@@ -39,15 +39,19 @@ function CurrencyRow(props) {
       cursor: 'pointer',
 
       '@media screen and (max-width: 768px)':
-      {
-        padding: '5px',
+        { padding: '5px',
         marginLeft: '0',
-      },
+       },
 
-      '@media screen and (max-width: 425px)':
+       '@media screen and (max-width: 425px)':
       {
         width: '60px',
       }
+    }),
+
+    input: (defaultStyles) => ({
+      ...defaultStyles,
+      color: '#fff',
     }),
 
     dropdownIndicator: (defaultStyles) => ({
