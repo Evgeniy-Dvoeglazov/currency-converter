@@ -72,6 +72,7 @@ const Title = styled.h1`
   text-transform: uppercase;
   line-height: 1.3;
   letter-spacing: 5px;
+  width: 50%;
 
   @media screen and (max-width: 1440px) {
     width: 500px;
@@ -93,7 +94,7 @@ const Title = styled.h1`
 `;
 
 const Image = styled.img`
-  width: 500px;
+  width: 450px;
   margin: 0;
 
   @media screen and (max-width: 1440px) {
@@ -128,6 +129,10 @@ const Button = styled.button`
   &:hover {
     opacity: 1;
     box-shadow: 0px 0px 10px white;
+  }
+
+  @media screen and (max-width: 1440px) {
+    padding: 15px 60px;
   }
 `;
 

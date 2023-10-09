@@ -38,7 +38,10 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={
-          <Main />
+          <>
+            <Main />
+            <Footer />
+          </>
         } />
         <Route path='/converter' element={
           <Converter
@@ -49,7 +52,6 @@ function App() {
           <NotFoundPage />
         } />
       </Routes>
-      <Footer />
     </Wrapper>
   );
 }

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import exchangeImage from '../../images/logo.png';
+import changeImage from '../../images/changer.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import CurrencyRow  from '../CurrencyRow/CurrencyRow';
 import { useEffect, useState } from 'react'
@@ -77,7 +77,7 @@ function Converter(props) {
         onChangeCurrency={(selectedOption) =>dispatch({ type: ADD_FROM_CURRENCY, payload: selectedOption.label })}
         disabled={disabled}
       />
-      <Image src={exchangeImage} alt='значок обмена' onClick={handleChangeBtnClick} />
+      <ChangeButton area-label='кнопка переворота валют' type='button' onClick={handleChangeBtnClick}></ChangeButton>
       <CurrencyRow
         titleText='To'
         displayText={props.toAmount.toFixed(2)}
@@ -92,23 +92,22 @@ function Converter(props) {
 }
 
 const Wrapper = styled.section`
-  margin: 50px auto 0;
-`;
+  height: 75vh;
+  // margin: 30px auto 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-const Button = styled.button`
-  background-color: transparent;
-  border: none;
-  border-radius: 50%;
-  color: #fff;
-  width: 80px;
-  height: 80px;
-  font-size: 24px;
-  box-shadow: 1px 1px 2px black, -1px -1px 2px white;
-  cursor: pointer;
+  @media screen and (max-width: 1024px) {
+    margin: 10px auto 0;
+  }
 
-  &:active {
-    box-shadow: none;
-    border: 1px solid #1c1c1c;
+  @media screen and (max-width: 768px) {
+    padding: 0 30px;
+  }
+
+  @media screen and (max-width: 425px) {
+    padding: 0 15px;
   }
 `;
 
@@ -118,14 +117,62 @@ const Buttons = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-  width: 300px;
-  gap: 15px
+  width: 280px;
+  gap: 15px;
+
+  @media screen and (max-width: 1024px) {
+    width: 200px;
+  }
+
+  @media screen and (max-width: 425px) {
+    margin: 30px auto 0;
+  }
 `;
 
-const Image = styled.img`
+const Button = styled.button`
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  width: 70px;
+  height: 70px;
+  font-size: 24px;
+  box-shadow: 1px 1px 2px black, -1px -1px 2px white;
+  cursor: pointer;
+
+  &:active {
+    box-shadow: none;
+    border: 1px solid #1c1c1c;
+  }
+
+  @media screen and (max-width: 1024px) {
+    width: 50px;
+    height: 50px;
+    font-size: 16px;
+  }
+`;
+
+const ChangeButton = styled.button`
   display: block;
-  margin: 15px auto;
+  margin: 10px auto;
   width: 30px;
+  height: 30px;
+  background-image: url(${changeImage});
+  background-size: cover;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: .6;
+  transition: opacity .2s linear;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  @media screen and (max-width: 1024px) {
+    width: 25px;
+    height: 25px;
+  }
 `;
 
 export default Converter;

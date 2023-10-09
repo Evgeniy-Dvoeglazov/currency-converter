@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import imageLogo from '../../images/logo.png';
+import imageLogo from '../../images/logo.svg';
 import { useNavigate } from 'react-router-dom';
 
 function Header() {
@@ -21,14 +21,14 @@ function Header() {
 }
 
 const Wrapper = styled.header`
-  padding: 40px 100px;
+  padding: 30px 100px;
 
   @media screen and (max-width: 1280px) {
     padding: 30px 50px;
   }
 
   @media screen and (max-width: 768px) {
-    padding: 30px 30px 50px;
+    padding: 30px;
   }
 
   @media screen and (max-width: 425px) {

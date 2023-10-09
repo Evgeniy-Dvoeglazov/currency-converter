@@ -22,6 +22,11 @@ function CurrencyRow(props) {
       color: state.isDisabled ? 'rgba(255, 255, 255, .2)' : 'rgba(255, 255, 255)',
       backgroundColor: state.isFocused ? '#4c4c4c' : '#282828',
       cursor: 'pointer',
+
+      '@media screen and (max-width: 768px)':
+      {
+        fontSize: '14px',
+      }
     }),
 
     control: (defaultStyles) => ({
@@ -32,8 +37,53 @@ function CurrencyRow(props) {
       border: 'none',
       boxShadow: 'none',
       cursor: 'pointer',
+
+      '@media screen and (max-width: 768px)':
+      {
+        padding: '5px',
+        marginLeft: '0',
+      },
+
+      '@media screen and (max-width: 425px)':
+      {
+        width: '60px',
+      }
     }),
-    singleValue: (defaultStyles) => ({ ...defaultStyles, color: '#fff' }),
+
+    dropdownIndicator: (defaultStyles) => ({
+      ...defaultStyles,
+      '@media screen and (max-width: 425px)':
+      {
+        padding: '0',
+      }
+    }),
+
+    valueContainer: (defaultStyles) => ({
+      ...defaultStyles,
+      '@media screen and (max-width: 425px)':
+      {
+        padding: '0',
+      }
+    }),
+
+    singleValue: (defaultStyles) => ({
+      ...defaultStyles,
+      color: '#fff',
+      width: '50px',
+
+      '@media screen and (max-width: 768px)':
+      {
+        width: '40px',
+        fontSize: '14px',
+        margin: '0',
+      },
+
+      '@media screen and (max-width: 425px)':
+      {
+        fontSize: '12px',
+        width: '30px',
+      }
+    }),
   };
 
   return (
@@ -68,6 +118,10 @@ const Wrapper = styled.div`
   position: relative;
   left: 59.33px;
   top: 0;
+
+  @media screen and (max-width: 768px) {
+    position: static;
+  }
 `;
 
 const Display = styled.div`
@@ -75,6 +129,14 @@ const Display = styled.div`
   border: 1px solid rgba(255, 255, 255, .1);
   border-radius: 10px;
   padding: 5px;
+
+  @media screen and (max-width: 1024px) {
+    width: 300px;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 270px;
+  }
 `;
 
 const Title = styled.h2`
@@ -83,12 +145,28 @@ const Title = styled.h2`
   font-weight: 400;
   opacity: .4;
   text-align: start;
+
+  @media screen and (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 const Numbers = styled.p`
   font-size: 30px;
   margin: 0;
   text-align: end;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 22px;
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
+  }
+
+  @media screen and (max-width: 424px) {
+    font-size: 15px;
+  }
 `;
 
 export default CurrencyRow;

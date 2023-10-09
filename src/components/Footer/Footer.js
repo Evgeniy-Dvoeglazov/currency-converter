@@ -9,7 +9,7 @@ function Footer() {
 }
 
 const Wrapper = styled.footer`
-  padding: 100px 0 60px;
+  padding: 100px 0 30px;
 `;
 
 const Title = styled.h3`
