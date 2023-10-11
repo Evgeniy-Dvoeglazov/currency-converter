@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import changeImage from '../../images/changer.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import CurrencyRow from '../CurrencyRow/CurrencyRow';
-import { useEffect, useState } from 'react'
 import {
   ADD_VALUE,
   REMOVE_LAST_VALUE,
@@ -13,12 +12,13 @@ import {
 } from '../../utils/constants';
 
 function Converter(props) {
-
   const dispatch = useDispatch();
 
   const buttons = buttonsText.map((buttonText) => {
     return (
-      <Button type='button' onClick={handleClick} key={buttonText}>{buttonText}</Button>
+      <ListEl key={buttonText}>
+        <Button type='button' onClick={handleClick}>{buttonText}</Button>
+      </ListEl>
     )
   });
 
@@ -27,11 +27,11 @@ function Converter(props) {
   const toCurrency = useSelector(state => state.toCurrency.toCurrency);
 
   function addValue(value) {
-    dispatch({ type: ADD_VALUE, payload: value })
+    dispatch({ type: ADD_VALUE, payload: value });
   }
 
   function removeLastValue() {
-    dispatch({ type: REMOVE_LAST_VALUE })
+    dispatch({ type: REMOVE_LAST_VALUE });
   }
 
   function handleClick(e) {
@@ -54,43 +54,32 @@ function Converter(props) {
   }
 
   function handleChangeBtnClick() {
-    console.log(toCurrency, fromCurrency);
     dispatch({ type: ADD_FROM_CURRENCY, payload: toCurrency });
     dispatch({ type: ADD_TO_CURRENCY, payload: fromCurrency });
   }
 
-  const [disabled, setDisabled] = useState(false);
-
-  useEffect(() => {
-    if (fromCurrency || toCurrency) {
-      setDisabled(true);
-    }
-  }, [fromCurrency, toCurrency])
-
   return (
     <Wrapper>
-      <div>
+      <Currency>
         <CurrencyRow
           titleText='From'
           displayText={amountValue || '0'}
           toCurrency={toCurrency}
           selectedCurrency={fromCurrency}
           onChangeCurrency={(selectedOption) => dispatch({ type: ADD_FROM_CURRENCY, payload: selectedOption.label })}
-          disabled={disabled}
         />
-        <ChangeButton area-label='кнопка переворота валют' type='button' onClick={handleChangeBtnClick}></ChangeButton>
+        <ChangeButton aria-label='кнопка переворота валют' type='button' onClick={handleChangeBtnClick}></ChangeButton>
         <CurrencyRow
           titleText='To'
           displayText={props.toAmount.toFixed(2)}
           fromCurrency={fromCurrency}
           selectedCurrency={toCurrency}
           onChangeCurrency={selectedOption => dispatch({ type: ADD_TO_CURRENCY, payload: selectedOption.label })}
-          disabled={disabled}
         />
-      </div>
+      </Currency>
       <Buttons>{buttons}</Buttons>
     </Wrapper>
-  )
+  );
 }
 
 const Wrapper = styled.section`
@@ -115,7 +104,9 @@ const Wrapper = styled.section`
   }
 `;
 
-const Buttons = styled.div`
+const Currency = styled.div``;
+
+const Buttons = styled.ul`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -123,6 +114,7 @@ const Buttons = styled.div`
   width: 280px;
   gap: 15px;
   margin: 0 59.33px 0 0;
+  padding: 0;
 
   @media screen and (max-width: 1024px) {
     width: 200px;
@@ -135,8 +127,13 @@ const Buttons = styled.div`
 
   @media screen and (max-width: 576px) {
     margin: 20px auto 0;
+    width: 200px;
   }
 `;
+
+const ListEl = styled.li`
+  list-style-type: none;
+`
 
 const Button = styled.button`
   background-color: transparent;
@@ -148,6 +145,7 @@ const Button = styled.button`
   font-size: 24px;
   box-shadow: 1px 1px 2px black, -1px -1px 2px white;
   cursor: pointer;
+  padding: 0;
 
   &:active {
     box-shadow: none;
@@ -166,6 +164,11 @@ const Button = styled.button`
     font-size: 14px;
   }
 
+  @media screen and (max-width: 576px) {
+    width: 50px;
+    height: 50px;
+    font-size: 16px;
+  }
 `;
 
 const ChangeButton = styled.button`

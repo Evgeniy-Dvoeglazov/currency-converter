@@ -1,9 +1,10 @@
 import { styled, keyframes } from 'styled-components';
-import mainImage from '../../images/main-image.png';
+import mainImageMin from '../../images/main-image@1x.png';
+import mainImageMid from '../../images/main-image@2x.png';
+import mainImageMax from '../../images/main-image@3x.png';
 import { useNavigate } from 'react-router-dom';
 
 function Main() {
-
   const navigate = useNavigate();
 
   function handleClick() {
@@ -14,7 +15,7 @@ function Main() {
     <Wrapper>
       <Intro>
         <Title>Конвертер валют</Title>
-        <Image src={mainImage} alt='изображение монет' />
+        <Image src={mainImageMin} srcSet={`${mainImageMid} 2x, ${mainImageMax} 3x`} alt='изображение монет' />
       </Intro>
       <Button type='button' onClick={handleClick}>Начать<Flare></Flare></Button>
     </Wrapper>

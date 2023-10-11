@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 function NotFoundPage() {
-
   const navigate = useNavigate();
 
   function handleClick() {
@@ -15,12 +14,12 @@ function NotFoundPage() {
       <Description>Страница не найдена</Description>
       <Button type='button' onClick={handleClick}>На главную</Button>
     </Wrapper>
-  )
+  );
 }
 
 const Wrapper = styled.section`
   text-align: center;
-  padding-top: 100px;
+  padding: 100px 0 30px;
 `;
 
 const Title = styled.h2`

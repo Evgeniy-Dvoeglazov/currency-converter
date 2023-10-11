@@ -5,7 +5,7 @@ function Footer() {
     <Wrapper>
       <Title>Евгений Двоеглазов, 2023</Title>
     </Wrapper>
-  )
+  );
 }
 
 const Wrapper = styled.footer`

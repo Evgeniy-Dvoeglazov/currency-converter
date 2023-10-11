@@ -3,7 +3,6 @@ import imageLogo from '../../images/logo.svg';
 import { useNavigate } from 'react-router-dom';
 
 function Header() {
-
   const navigate = useNavigate();
 
   function handleClick() {

@@ -3,18 +3,17 @@ import { useSelector } from 'react-redux';
 import Select from 'react-select';
 
 function CurrencyRow(props) {
-  console.log(props.disabled);
 
   const currencyOptions = useSelector(state => state.currencyOptions.currencyOptions);
 
   const options = currencyOptions.map((option) => {
     if (option === props.toCurrency || option === props.fromCurrency) {
-      return { value: option, label: option, isDisabled: true }
+      return { value: option, label: option, isDisabled: true };
     } else {
-      return { value: option, label: option }
+      return { value: option, label: option };
     }
   });
-  const currentCurrency = { value: props.selectedCurrency, label: props.selectedCurrency }
+  const currentCurrency = { value: props.selectedCurrency, label: props.selectedCurrency };
 
   const customStyles = {
     option: (defaultStyles, state) => ({
@@ -48,14 +47,14 @@ function CurrencyRow(props) {
 
     input: (defaultStyles) => ({
       ...defaultStyles,
-      color: '#fff',
+      color: '#fff'
     }),
 
     dropdownIndicator: (defaultStyles) => ({
       ...defaultStyles,
       '@media screen and (max-width: 768px)':
       {
-        padding: '0',
+        padding: '0'
       }
     }),
 
@@ -63,7 +62,7 @@ function CurrencyRow(props) {
       ...defaultStyles,
       '@media screen and (max-width: 768px)':
       {
-        padding: '0',
+        padding: '0'
       }
     }),
 
@@ -76,9 +75,9 @@ function CurrencyRow(props) {
       {
         width: '30px',
         fontSize: '12px',
-        margin: '0',
+        margin: '0'
       },
-    }),
+    })
   };
 
   return (
@@ -93,14 +92,6 @@ function CurrencyRow(props) {
         options={options}
         onChange={props.onChangeCurrency}
         styles={customStyles}
-        theme={(theme) => ({
-          ...theme,
-          colors: {
-            ...theme.colors,
-            primary25: 'hotpink',
-            primary: 'black',
-          },
-        })}
       />
     </Wrapper>
   )

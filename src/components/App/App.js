@@ -7,10 +7,9 @@ import styled from 'styled-components';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getCurrency, getChangedCurrency, getCurrencyCountry } from '../../asyncActions/currency';
+import { getCurrency, getChangedCurrency } from '../../asyncActions/currency';
 
 function App() {
-
   const dispatch = useDispatch();
 
   const amount = useSelector(state => state.amount.amount);
@@ -22,9 +21,7 @@ function App() {
   const toAmount = amount * exchangeRate;
 
   useEffect(() => {
-    navigate('/', { replace: true });
     dispatch(getCurrency());
-    // dispatch(getCurrencyCountry());
   }, [])
 
   useEffect(() => {
