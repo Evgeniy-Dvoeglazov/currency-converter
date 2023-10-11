@@ -24,9 +24,9 @@ function CurrencyRow(props) {
       cursor: 'pointer',
 
       '@media screen and (max-width: 768px)':
-        {
-          fontSize: '14px',
-       }
+      {
+        fontSize: '14px',
+      }
     }),
 
     control: (defaultStyles) => ({
@@ -39,12 +39,9 @@ function CurrencyRow(props) {
       cursor: 'pointer',
 
       '@media screen and (max-width: 768px)':
-        { padding: '5px',
-        marginLeft: '0',
-       },
-
-       '@media screen and (max-width: 425px)':
       {
+        padding: '5px',
+        marginLeft: '0',
         width: '60px',
       }
     }),
@@ -56,7 +53,7 @@ function CurrencyRow(props) {
 
     dropdownIndicator: (defaultStyles) => ({
       ...defaultStyles,
-      '@media screen and (max-width: 425px)':
+      '@media screen and (max-width: 768px)':
       {
         padding: '0',
       }
@@ -64,7 +61,7 @@ function CurrencyRow(props) {
 
     valueContainer: (defaultStyles) => ({
       ...defaultStyles,
-      '@media screen and (max-width: 425px)':
+      '@media screen and (max-width: 768px)':
       {
         padding: '0',
       }
@@ -77,16 +74,10 @@ function CurrencyRow(props) {
 
       '@media screen and (max-width: 768px)':
       {
-        width: '40px',
-        fontSize: '14px',
+        width: '30px',
+        fontSize: '12px',
         margin: '0',
       },
-
-      '@media screen and (max-width: 425px)':
-      {
-        fontSize: '12px',
-        width: '30px',
-      }
     }),
   };
 

@@ -28,11 +28,11 @@ const Wrapper = styled.header`
   }
 
   @media screen and (max-width: 768px) {
-    padding: 30px;
+    padding: 20px 30px 50px;
   }
 
   @media screen and (max-width: 425px) {
-    padding: 20px 15px 50px;
+    padding: 20px 15px 40px;
   }
 `;
 
@@ -54,7 +54,7 @@ const Image = styled.img`
     rotate: -180deg;
   }
 
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 768px) {
     width: 25px;
   }
 `;
@@ -64,7 +64,7 @@ const Title = styled.h2`
   font-weight: 400;
   margin: 0 0 0 15px;
 
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 768px) {
     font-size: 14px;
     margin: 0 0 0 10px;
   }

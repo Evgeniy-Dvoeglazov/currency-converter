@@ -96,19 +96,21 @@ function Converter(props) {
 const Wrapper = styled.section`
   margin: 30px auto 0;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 150px;
   align-items: center;
 
   @media screen and (max-width: 1024px) {
-    margin: 10px auto;
+    margin: 0 auto 30px;
+    gap: 100px;
   }
 
   @media screen and (max-width: 768px) {
-    padding: 0 30px;
-    display: block;
+    gap: 40px;
   }
 
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 576px) {
+    display: block;
     padding: 0 15px;
   }
 `;
@@ -120,17 +122,19 @@ const Buttons = styled.div`
   align-items: center;
   width: 280px;
   gap: 15px;
+  margin: 0 59.33px 0 0;
 
   @media screen and (max-width: 1024px) {
     width: 200px;
   }
 
   @media screen and (max-width: 768px) {
-    margin: 40px auto 0;
+    margin: 20px 0 0;
+    width: 170px;
   }
 
-  @media screen and (max-width: 425px) {
-    margin: 30px auto 0;
+  @media screen and (max-width: 576px) {
+    margin: 20px auto 0;
   }
 `;
 
@@ -155,6 +159,13 @@ const Button = styled.button`
     height: 50px;
     font-size: 16px;
   }
+
+  @media screen and (max-width: 768px) {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
 `;
 
 const ChangeButton = styled.button`
