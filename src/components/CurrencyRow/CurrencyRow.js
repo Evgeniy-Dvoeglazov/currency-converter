@@ -150,7 +150,7 @@ const Numbers = styled.p`
     font-size: 20px;
   }
 
-  @media screen and (max-width: 424px) {
+  @media screen and (max-width: 330px) {
     font-size: 15px;
   }
 `;
