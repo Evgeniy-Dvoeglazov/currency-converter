@@ -7,7 +7,7 @@ const ADD_FROM_CURRENCY = 'ADD_FROM_CURRENCY';
 const ADD_TO_CURRENCY = 'ADD_TO_CURRENCY';
 const ADD_OPTIONS = 'ADD_OPTIONS';
 const ADD_EXCHANGE_RATE = 'ADD_EXCHANGE_RATE';
-const maxLength = 18;
+const maxLength = 15;
 const buttonsText = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.', 'DEL'];
 
 export {

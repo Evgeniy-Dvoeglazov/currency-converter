@@ -126,8 +126,9 @@ const Buttons = styled.ul`
   }
 
   @media screen and (max-width: 576px) {
-    margin: 20px auto 0;
-    width: 200px;
+    margin: 40px auto 0;
+    width: 220px;
+    gap: 17px
   }
 `;
 
@@ -165,9 +166,9 @@ const Button = styled.button`
   }
 
   @media screen and (max-width: 576px) {
-    width: 50px;
-    height: 50px;
-    font-size: 16px;
+    width: 55px;
+    height: 55px;
+    font-size: 18px;
   }
 `;
 

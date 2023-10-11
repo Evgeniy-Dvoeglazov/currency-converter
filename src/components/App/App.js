@@ -59,7 +59,7 @@ const Wrapper = styled.div`
   color: #fff;
   margin: 0;
   padding: 0;
-  min-width: 320px;
+  min-width: 280px;
   box-sizing: border-box;
   font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
   -moz-osx-font-smoothing: grayscale;

@@ -89,8 +89,8 @@ const Title = styled.h1`
   }
 
   @media screen and (max-width: 425px) {
-    width: 290px;
-    font-size: 36px;
+    width: 250px;
+    font-size: 34px;
   }
 `;
 
