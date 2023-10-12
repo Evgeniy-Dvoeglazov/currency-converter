@@ -4,7 +4,7 @@ import Converter from '../Converter/Converter';
 import Footer from '../Footer/Footer';
 import NotFoundPage from '../NotFoundPage/NotFoundPage'
 import styled from 'styled-components';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getCurrency, getChangedCurrency } from '../../asyncActions/currency';
@@ -17,7 +17,6 @@ function App() {
   const fromCurrency = useSelector(state => state.fromCurrency.fromCurrency);
   const toCurrency = useSelector(state => state.toCurrency.toCurrency);
 
-  const navigate = useNavigate();
   const toAmount = amount * exchangeRate;
 
   useEffect(() => {

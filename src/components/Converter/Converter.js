@@ -25,6 +25,7 @@ function Converter(props) {
   const amountValue = useSelector(state => state.amount.amount);
   const fromCurrency = useSelector(state => state.fromCurrency.fromCurrency);
   const toCurrency = useSelector(state => state.toCurrency.toCurrency);
+  const error = useSelector(state => state.error.error);
 
   function addValue(value) {
     dispatch({ type: ADD_VALUE, payload: value });
@@ -76,6 +77,11 @@ function Converter(props) {
           selectedCurrency={toCurrency}
           onChangeCurrency={selectedOption => dispatch({ type: ADD_TO_CURRENCY, payload: selectedOption.label })}
         />
+        {
+          error
+            ? <Error>Что-то пошло не так... Попробуйте позже</Error>
+            : ''
+        }
       </Currency>
       <Buttons>{buttons}</Buttons>
     </Wrapper>
@@ -194,5 +200,18 @@ const ChangeButton = styled.button`
     height: 25px;
   }
 `;
+
+const Error = styled.p`
+  margin: 15px 0 0 59.33px;
+
+  @media screen and (max-width: 768px) {
+    margin: 15px 0 0;
+    font-size: 14px;
+  }
+
+  @media screen and (max-width: 576px) {
+    text-align: center;
+  }
+`
 
 export default Converter;
