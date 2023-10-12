@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
+// компонент 404
 function NotFoundPage() {
   const navigate = useNavigate();
 
+  // обработка клика по кнопке "На главную"
   function handleClick() {
     navigate('/', { replace: true });
   }

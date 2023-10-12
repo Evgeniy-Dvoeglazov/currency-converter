@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 function Main() {
   const navigate = useNavigate();
 
+  // обработка клика по кнопке "Начать"
   function handleClick() {
     navigate('/converter', { replace: true });
   }
@@ -22,6 +23,7 @@ function Main() {
   )
 }
 
+// анмация блика кнопки "Начать"
 const flareAnimation = keyframes`
   0% {
     left: -150%;
@@ -74,6 +76,7 @@ const Title = styled.h1`
   line-height: 1.3;
   letter-spacing: 5px;
   width: 50%;
+  font-weight: 900;
 
   @media screen and (max-width: 1440px) {
     width: 500px;

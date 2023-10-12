@@ -19,10 +19,12 @@ function App() {
 
   const toAmount = amount * exchangeRate;
 
+  // Подгружаем данные при перезагрузке страницы
   useEffect(() => {
     dispatch(getCurrency());
   }, [])
 
+  // Подгружаем данные при выборе валют в селекте
   useEffect(() => {
     if (fromCurrency !== '' && toCurrency !== '' && fromCurrency !== toCurrency) {
       dispatch(getChangedCurrency(fromCurrency, toCurrency));

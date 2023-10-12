@@ -1,3 +1,4 @@
+// редьюсер выбранной валюты которую меняем
 import { ADD_FROM_CURRENCY } from "../utils/constants";
 
 const initialState = {

@@ -14,6 +14,12 @@ import {
 function Converter(props) {
   const dispatch = useDispatch();
 
+  const amountValue = useSelector(state => state.amount.amount);
+  const fromCurrency = useSelector(state => state.fromCurrency.fromCurrency);
+  const toCurrency = useSelector(state => state.toCurrency.toCurrency);
+  const error = useSelector(state => state.error.error);
+
+  // массив кнопок для ввода цены
   const buttons = buttonsText.map((buttonText) => {
     return (
       <ListEl key={buttonText}>
@@ -22,20 +28,19 @@ function Converter(props) {
     )
   });
 
-  const amountValue = useSelector(state => state.amount.amount);
-  const fromCurrency = useSelector(state => state.fromCurrency.fromCurrency);
-  const toCurrency = useSelector(state => state.toCurrency.toCurrency);
-  const error = useSelector(state => state.error.error);
-
+  // добавить значение в поле цены
   function addValue(value) {
     dispatch({ type: ADD_VALUE, payload: value });
   }
 
+  // удалить последнее значение в поле цены
   function removeLastValue() {
     dispatch({ type: REMOVE_LAST_VALUE });
   }
 
+  // обработка клика по кнопкам в зависимости от значения кнопки
   function handleClick(e) {
+    // проверяем, есть ли в поле цены уже точка
     if (e.target.textContent === '.' && amountValue.includes('.')) {
       return;
     }
@@ -43,6 +48,7 @@ function Converter(props) {
       removeLastValue();
       return;
     }
+    // добавляем ограничение по количеству символов
     if (amountValue.length < maxLength) {
       if (amountValue.length === 1 && amountValue[0] === '0' && e.target.textContent !== '.' && e.target.textContent !== 'DEL') {
         addValue('' + e.target.textContent);
@@ -54,6 +60,7 @@ function Converter(props) {
     } else return;
   }
 
+  // обработка клика по кнопке быстрой смены валют в полях
   function handleChangeBtnClick() {
     dispatch({ type: ADD_FROM_CURRENCY, payload: toCurrency });
     dispatch({ type: ADD_TO_CURRENCY, payload: fromCurrency });

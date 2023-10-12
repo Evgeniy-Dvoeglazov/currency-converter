@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 function Header() {
   const navigate = useNavigate();
 
+  // обрабока клика по логотипу
   function handleClick() {
     navigate('/', { replace: true });
   }

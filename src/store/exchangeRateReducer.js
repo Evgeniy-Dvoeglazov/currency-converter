@@ -1,3 +1,4 @@
+// редьюсер обменного курса валют
 import { ADD_EXCHANGE_RATE } from "../utils/constants";
 
 const initialState = {

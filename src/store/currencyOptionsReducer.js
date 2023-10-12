@@ -1,3 +1,4 @@
+// редьюсер списка валют
 import { ADD_OPTIONS } from "../utils/constants";
 
 const initialState = {

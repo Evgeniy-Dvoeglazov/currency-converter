@@ -1,3 +1,4 @@
+// редьюсер состояния ошибки
 import { IS_ERROR } from "../utils/constants";
 
 const initialState = {

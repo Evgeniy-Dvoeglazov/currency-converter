@@ -8,6 +8,7 @@ import {
   IS_ERROR,
 } from '../utils/constants';
 
+// Получаем список валют с курсом относительно USD
 export function getCurrency() {
   return function (dispatch) {
     axios.get(`${BASE_URL}/latest?from=USD`)
@@ -25,6 +26,7 @@ export function getCurrency() {
   };
 }
 
+// Получаем обменный курс относительно выбранных валют
 export function getChangedCurrency(fromCurrency, toCurrency) {
   return function (dispatch) {
     axios.get(`${BASE_URL}/latest?from=${fromCurrency}&to=${toCurrency}`)

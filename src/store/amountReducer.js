@@ -1,3 +1,4 @@
+// редьюсер значений цены
 import { ADD_VALUE, REMOVE_LAST_VALUE } from "../utils/constants"
 
 const initialState = {

@@ -6,15 +6,19 @@ function CurrencyRow(props) {
 
   const currencyOptions = useSelector(state => state.currencyOptions.currencyOptions);
 
+  // создаем массив списка валют для селекта
   const options = currencyOptions.map((option) => {
     if (option === props.toCurrency || option === props.fromCurrency) {
+      // блокируем выбор одинаковых валют
       return { value: option, label: option, isDisabled: true };
     } else {
       return { value: option, label: option };
     }
   });
+
   const currentCurrency = { value: props.selectedCurrency, label: props.selectedCurrency };
 
+  // Задаем кастомные стили для селекта
   const customStyles = {
     option: (defaultStyles, state) => ({
       ...defaultStyles,
